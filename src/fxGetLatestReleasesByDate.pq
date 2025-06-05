@@ -12,7 +12,7 @@
 
     @example
                 let
-                    MyVersions = {"7.1-release-1", "7.1-release-2", "8.2-release-1"},
+                    MyVersions = {"7.20240101-release-1", "7.20240101-release-2", "8.20240102-release-1"},
                     Latest = fxGetLatestReleasesByDate(MyVersions)
                 in
                     Latest
