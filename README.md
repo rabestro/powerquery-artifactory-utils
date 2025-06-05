@@ -65,4 +65,4 @@ Contributions are welcome! If you have ideas for new functions, find a bug, or h
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-Copyright (c) 2025 [Your Name or Organization]
+Copyright (c) 2025 Jegors Čemisovs
