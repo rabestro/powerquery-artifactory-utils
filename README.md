@@ -58,8 +58,8 @@ To use a function from this repository:
 
 Contributions are welcome! If you have ideas for new functions, find a bug, or have a suggestion for improvement, please feel free to:
 
-* Open an [Issue](https://github.com/your-username/powerquery-artifactory-utils/issues) to discuss the change.
-* Submit a [Pull Request](https://github.com/your-username/powerquery-artifactory-utils/pulls) with your proposed changes.
+* Open an [Issue](https://github.com/rabestro/powerquery-artifactory-utils/issues) to discuss the change.
+* Submit a [Pull Request](https://github.com/rabestro/powerquery-artifactory-utils/pulls) with your proposed changes.
 
 ## License
 
