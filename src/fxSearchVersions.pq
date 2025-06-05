@@ -20,7 +20,11 @@
 (groupId as text, artifactId as text, optional repository as nullable text) =>
     let
         // Use the required parameter for the base URL.
-        BaseHost = ArtifactoryHost,
+        BaseHost =
+            if ArtifactoryHost <> null and ArtifactoryHost <> "" then
+                ArtifactoryHost
+            else
+                error "ArtifactoryHost parameter is required and must be a valid URL",
         // Set the target repository, defaulting to "releases" if a value isn't provided.
         TargetRepo = repository ?? "releases",
         // Define the query parameters for the API call.
@@ -43,7 +47,17 @@
         // Access the "results" list, defaulting to an empty list if not found to prevent errors.
         ResultsList = Record.FieldOrDefault(ParsedJson, "results", {}),
         // Transform the list of records to extract and type-cast the "version" field in a single pass.
-        ListOfVersions = List.Transform(ResultsList, each Text.From(Record.FieldOrDefault(_, "version", null))),
+        ListOfVersions = List.Transform(
+            ResultsList,
+            each
+                let
+                    versionValue = Record.FieldOrDefault(_, "version", null)
+                in
+                    if versionValue <> null then
+                        Text.From(versionValue)
+                    else
+                        null
+        ),
         // Remove any nulls that may have resulted from missing "version" fields.
         CleanedListOfVersions = List.RemoveNulls(ListOfVersions)
     in
