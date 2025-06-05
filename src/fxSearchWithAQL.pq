@@ -14,7 +14,7 @@
                 in
                     fxSearchWithAQL(MyQuery)
 
-    @requires   A global parameter named 'ArtifactoryHost' must be defined.
+    @requires   Global parameters 'ArtifactoryHost' and optionally 'ArtifactoryApiKey' must be defined.
 */
 (AqlQueryString as text) =>
     let
@@ -23,9 +23,14 @@
         AqlApiEndpoint = BaseHost & "/artifactory/api/search/aql",
         // Prepare and execute the API POST request
         BinaryAqlQuery = Text.ToBinary(AqlQueryString),
+        BaseHeaders = [#"Content-Type"="text/plain"],
+        AuthHeader = if ArtifactoryApiKey <> null and ArtifactoryApiKey <> ""
+                     then [#"X-JFrog-Art-Api" = ArtifactoryApiKey]
+                     else [], // Add the auth header only if the API key parameter has a value
+        FinalHeaders = Record.Combine({BaseHeaders, AuthHeader}),
         ApiResponse = Web.Contents(
             AqlApiEndpoint, [
-                Headers = [#"Content-Type" = "text/plain"],
+                Headers = FinalHeaders,
                 Content = BinaryAqlQuery
             ]
         ),
