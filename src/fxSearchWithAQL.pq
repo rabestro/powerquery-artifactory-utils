@@ -37,12 +37,15 @@
         // Process the JSON response
         ParsedJson = Json.Document(ApiResponse),
         ResultsList = Record.FieldOrDefault(ParsedJson, "results", {}),
-        ResultTable = Table.FromList(ResultsList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
-        ExpandedResults = Table.ExpandRecordColumn(
-            ResultTable,
-            "Column1",
-            {"name", "repo", "path", "type", "size", "created", "modified"},
-            {"Name", "Repo", "Path", "Type", "Size", "Created", "Modified"}
-        )
+        ResultTable = Table.FromList(ResultsList, Splitter.SplitByNothing(), {"Column1"}, null, ExtraValues.Error),
+        ExpandedResults = if Table.RowCount(ResultTable) > 0 then
+            let
+                SampleRecord = ResultTable{0}[Column1],
+                FieldNames = Record.FieldNames(SampleRecord),
+                ColumnNames = List.Transform(FieldNames, each Text.Proper(_))
+            in
+                Table.ExpandRecordColumn(ResultTable, "Column1", FieldNames, ColumnNames)
+        else
+            #table({}, {})
     in
         ExpandedResults
