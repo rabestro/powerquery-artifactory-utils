@@ -16,7 +16,7 @@
 
     @requires   Global parameters 'ArtifactoryHost' and optionally 'ArtifactoryApiKey' must be defined.
 */
-(AqlQueryString as text) =>
+(AqlQueryString as text) as table =>
     let
         // Configuration
         BaseHost = ArtifactoryHost,
