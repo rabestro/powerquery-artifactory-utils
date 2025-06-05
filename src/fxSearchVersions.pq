@@ -17,7 +17,7 @@
     @requires   A global parameter named 'ArtifactoryHost' must be defined, holding the base URL
                 of your Artifactory instance (e.g., "https://mycompany.jfrog.io").
 */
-(groupId as text, artifactId as text, optional repository as nullable text) =>
+(groupId as text, artifactId as text, optional repository as nullable text) as list =>
     let
         // Use the required parameter for the base URL.
         BaseHost =
