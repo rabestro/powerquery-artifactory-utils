@@ -14,12 +14,10 @@
 
     Example Value: "https://mycompany.jfrog.io"
 */
-let
-    // Replace the placeholder URL below with your actual Artifactory host address.
-    Source = "https://your-artifactory-host.com" meta [
-        IsParameterQuery = true,
-        IsParameterQueryRequired = true,
-        Type = type text
-    ]
-in
-    Source
+
+// Replace the placeholder URL below with your actual Artifactory host address.
+"https://your-artifactory-host.com" meta [
+    IsParameterQuery = true,
+    IsParameterQueryRequired = true,
+    Type = type text
+]
