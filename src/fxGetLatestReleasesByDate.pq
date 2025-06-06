@@ -18,7 +18,7 @@
                     Latest
 */
 let
-    fxGetLatestReleasesByDate = (versionList as list) =>
+    fxGetLatestReleasesByDate = (versionList as list) as table =>
         let
             // Step 1: Filter the incoming list to only include items containing "-release-".
             FilterToReleaseOnly = List.Select(versionList, each Text.Contains(_, "-release-")),
@@ -60,7 +60,7 @@ let
             // Step 4: Expand the record column to get the full version string.
             ExpandedData = Table.ExpandRecordColumn(GroupedByDate, "LatestVersionRecord", {"version"}, {"version"}),
             // Step 5: Select and reorder the final columns for a clean output.
-            FinalTable = Table.SelectColumns(ExpandedData, {"version", "date"})
+            FinalTable = Table.SelectColumns(ExpandedData, {"date", "version"})
         in
             FinalTable
 in
