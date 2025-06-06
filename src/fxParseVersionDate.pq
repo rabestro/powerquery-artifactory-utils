@@ -1,5 +1,5 @@
 /*
-    fxGetDateFromVersion
+    fxParseVersionDate
 
     Parses a single version string to extract its embedded date. This function
     is a building block for more complex transformations.
@@ -13,11 +13,11 @@
     @return     (date) A date object, or null if the version string could not be parsed.
 
     @example
-                fxGetDateFromVersion("1.20250603.134420-06cd97c9")
+                fxParseVersionDate("1.20250603.134420-06cd97c9")
                 // returns #date(2025, 6, 3)
 */
 let
-    fxGetDateFromVersion = (version as text) =>
+    fxParseVersionDate = (version as text) =>
         let
             parsedDate =
                 try
@@ -30,4 +30,4 @@ let
         in
             parsedDate
 in
-    fxGetDateFromVersion
+    fxParseVersionDate

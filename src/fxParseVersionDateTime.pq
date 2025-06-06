@@ -1,5 +1,5 @@
 /*
-    fxParseBuildVersions
+    fxParseVersionDateTime
 
     Parses a list of build-version strings into a structured table. This function assumes
     versions are in the format: "major.yyyymmdd.hhmmss-hash".
@@ -10,7 +10,7 @@
                 The 'datetime' column will be null if parsing fails for a specific version.
 
     @example
-                fxParseBuildVersions({"1.20250530.101919-c0b55fee", "2.20250601.120000-abcdef12"})
+                fxParseVersionDateTime({"1.20250530.101919-c0b55fee", "2.20250601.120000-abcdef12"})
 */
 (versionList as list) =>
     let
