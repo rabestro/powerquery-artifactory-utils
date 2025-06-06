@@ -42,7 +42,7 @@
                 Headers = [#"Accept" = "application/json"]
             ]
         ),
-        // Parse the JSON response.
+        // Parse the JSON response from the API.
         ParsedJson = Json.Document(ApiResponse),
         // Access the "results" list, defaulting to an empty list if not found to prevent errors.
         ResultsList = Record.FieldOrDefault(ParsedJson, "results", {}),
